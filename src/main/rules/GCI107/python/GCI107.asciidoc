@@ -3,7 +3,7 @@ Using dotted imports (e.g., os.path.exists) inside loops leads to inefficient co
 == Non Compliant Code Example
 
 [source,python]
-import os # NOQA
+import os
 
 def test_dotted_import(items):
 for item in items:
