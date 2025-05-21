@@ -1,0 +1,15 @@
+{
+  "title": "Use direct imports instead of dotted access in loops",
+  "type": "",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "5min"
+  },
+  "tags": [
+    "creedengo",
+    "eco-design",
+    "performance"
+  ],
+  "defaultSeverity": "Minor"
+}

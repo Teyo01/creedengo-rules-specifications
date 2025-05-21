@@ -1,0 +1,59 @@
+Using dotted imports (e.g., os.path.exists) inside loops leads to inefficient code due to repeated attribute lookups. Prefer direct imports to reduce overhead and improve performance, especially in tight loops.
+
+== Non Compliant Code Example
+
+[source,python]
+import os # NOQA
+
+def test_dotted_import(items):
+for item in items:
+val = os.environ[item] # Noncompliant: uses dotted import in loop
+
+def even_worse_dotted_import(items):
+for item in items:
+val = os.path.exists(item) # Noncompliant: uses dotted import in loop
+
+== Compliant Solution
+
+[source,python]
+from os import environ
+from os.path import exists
+
+def test_direct_import(items):
+for item in items:
+val = environ[item] # Compliant: direct import
+
+def test_direct_import_exists(items):
+for item in items:
+val = exists(item) # Compliant: direct import
+
+== Relevance Analysis
+
+This rule is relevant in scenarios where performance is critical, such as data processing or I/O operations in loops. Direct imports reduce the attribute resolution overhead, leading to more efficient and environmentally friendly code execution.
+
+=== Configuration
+
+Processor: Intel(R) Core(TM) Ultra 5 135U, 2100 MHz, 12 cores, 14 logical processors
+RAM: 16 GB
+CO2 Emissions Measurement: Using https://mlco2.github.io/codecarbon/[CodeCarbon]
+
+=== Context
+
+Two approaches were benchmarked:
+
+Non-compliant: Using dotted imports inside a loop
+Compliant: Using direct imports outside the loop
+
+=== Impact Analysis
+
+image::results.png[]
+
+== Conclusion
+
+Replacing dotted imports inside loops with direct imports: Significantly reduces carbon footprint and improves performance.
+
+It's important to note that direct imports are beneficial in loops. However, for single, isolated calls outside loops, the impact is minimal.
+
+== References
+
+https://docs.python.org/3/reference/import.html
