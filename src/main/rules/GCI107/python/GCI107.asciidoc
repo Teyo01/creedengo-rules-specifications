@@ -46,7 +46,7 @@ Compliant: Using direct imports outside the loop
 
 === Impact Analysis
 
-image::results.png[]
+image::result.png[]
 
 == Conclusion
 
